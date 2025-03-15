@@ -37,7 +37,7 @@ namespace dipol_moment_gui
                 {AtomType.O, 3.44},
                 {AtomType.P, 2.19},
             };
-            return Math.Abs(electroneg[a1] -  electroneg[a2]) * d;
+            return Math.Abs(electroneg[a1] - electroneg[a2]) * d;
         }
         private double calcMuByAngle(double mu1, double mu2, double a)
         {
@@ -53,7 +53,7 @@ namespace dipol_moment_gui
             P = 'P'
         }
 
-        
+
 
         struct Atom
         {
@@ -94,9 +94,12 @@ namespace dipol_moment_gui
             }
         }
 
+        FormWindowState lastWindowState;
         List<Atom> atoms = new List<Atom>();
-        Dictionary<(Atom, Atom), (int, double, double)> bonds = new Dictionary<(Atom, Atom), (int, double, double)>();
-        Dictionary<(Atom, Atom, Atom), (int, double, double)> angles = new Dictionary<(Atom, Atom, Atom), (int, double, double)>();
+        Dictionary<(Atom, Atom), int> bondsIndexator = new Dictionary<(Atom, Atom), int>();
+        List<(double d, double mu)> bonds = new List<(double d, double mu)> ();
+        Dictionary<(Atom, Atom, Atom), int> anglesIndexator = new Dictionary<(Atom, Atom, Atom), int> ();
+        List<(double angle, double mu)> angles = new List<(double angle, double mu)> ();
         List<(Atom, Atom, Atom)> molecule = new List<(Atom, Atom, Atom)>();
 
         string savedFileName = "";
@@ -106,7 +109,9 @@ namespace dipol_moment_gui
             InitializeComponent();
             bondComboBox1.SelectedIndex = 0;
             bondComboBox2.SelectedIndex = 0;
-            bondTable.RowStyles[0] = new RowStyle(SizeType.Absolute, 30);
+
+            lastWindowState = WindowState;
+            Form_ResizeEnd(this, new EventArgs());
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -128,17 +133,18 @@ namespace dipol_moment_gui
             langStrip.Text = LocRM.GetString("langStrip.Text", currentCulture);
             bondgroupBox.Text = LocRM.GetString("bondgroupBox.Text", currentCulture);
             bondLabel.Text = LocRM.GetString("bondLabel.Text", currentCulture);
-            bond_tableLabel.Text = LocRM.GetString("tableLabel.Text", currentCulture);
+            bondListView.Columns[0].Text = LocRM.GetString("tableLabel.Text", currentCulture);
+
             bond_addButton.Text = LocRM.GetString("addButton.Text", currentCulture);
 
             anglegroupBox.Text = LocRM.GetString("anglegroupBox.Text", currentCulture);
             angleLabel.Text = LocRM.GetString("angleLabel.Text", currentCulture);
-            angle_tableLabel.Text = LocRM.GetString("tableLabel.Text", currentCulture);
+            angleListView.Columns[0].Text = LocRM.GetString("tableLabel.Text", currentCulture);
             angle_addButton.Text = LocRM.GetString("addButton.Text", currentCulture);
 
             groupGroupBox.Text = LocRM.GetString("groupGroupBox.Text", currentCulture);
             groupLabel.Text = LocRM.GetString("groupLabel.Text", currentCulture);
-            group_tableLabel.Text = LocRM.GetString("tableLabel.Text", currentCulture);
+            groupListView.Columns[0].Text = LocRM.GetString("tableLabel.Text", currentCulture);
             group_addButton.Text = LocRM.GetString("addButton.Text", currentCulture);
             radiusLabel.Text = LocRM.GetString("radiusLabel.Text", currentCulture);
         }
@@ -183,7 +189,35 @@ namespace dipol_moment_gui
                     d);
             //
 
-            bond_muLabel.Text = mu.ToString();
+            bond_muLabel.Text = mu.ToString("N3");
+        }
+
+        private void Form_SizeChanged(object sender, EventArgs e)
+        {
+            
+            if (lastWindowState != WindowState)
+            {
+                lastWindowState = WindowState;
+                Form_ResizeEnd(this, new EventArgs());
+            }
+        }
+
+        private void Form_ResizeEnd(object sender, EventArgs e)
+        {
+            double workingWidth = bondListView.Width - System.Windows.SystemParameters.VerticalScrollBarWidth - 10;
+            double col0 = 0.5;
+            double col1 = 0.25;
+            double col2 = 0.25;
+
+            bondListView.Columns[0].Width = (int)Math.Floor(workingWidth * col0);
+            bondListView.Columns[1].Width = (int)Math.Floor(workingWidth * col1);
+            bondListView.Columns[2].Width = (int)Math.Floor(workingWidth * col2);
+
+            angleListView.Columns[0].Width = (int)Math.Floor(workingWidth * col0);
+            angleListView.Columns[1].Width = (int)Math.Floor(workingWidth * col1);
+            angleListView.Columns[2].Width = (int)Math.Floor(workingWidth * col2);
+
+            groupListView.Columns[0].Width = (int)Math.Floor(workingWidth);
         }
 
         private void AddBond(Atom a1, Atom a2, double d)
@@ -213,39 +247,33 @@ namespace dipol_moment_gui
                 anglecomboBox3.Items.Add(a2.ToString());
             }
 
-            if (bonds.ContainsKey((a1, a2)) || bonds.ContainsKey((a2, a1)))
+            if (bondsIndexator.ContainsKey((a1, a2)) || bondsIndexator.ContainsKey((a2, a1)))
             {
                 if (MessageBox.Show(GetResource("value_info"), GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     (Atom, Atom) idx;
-                    if (bonds.ContainsKey((a1, a2)))
+                    if (bondsIndexator.ContainsKey((a1, a2)))
                         idx = (a1, a2);
                     else
                         idx = (a2, a1);
 
-                    int i = bonds[idx].Item1;
+                    int i = bondsIndexator[idx];
 
-                    var dlabel = (Label)bondTable.Controls[$"d{i + 1}"];
-                    var mulabel = (Label)bondTable.Controls[$"mu{i + 1}"];
-                    bondTable.Controls.Remove(dlabel);
-                    bondTable.Controls.Remove(mulabel);
-                    bonds[idx] = (i, d, mu);
-                    dlabel.Text = d.ToString();
-                    mulabel.Text = mu.ToString();
-                    bondTable.Controls.Add(dlabel, 1, i + 1);
-                    bondTable.Controls.Add(mulabel, 2, i + 1);
+                    bondListView.Items[i].SubItems[1].Text = d.ToString();
+                    bondListView.Items[i].SubItems[2].Text = mu.ToString("N3");
+
+                    bonds[i] = (d, mu);
                 }
                 return;
             }
 
-            bonds.Add((a1, a2), (bonds.Count, d, mu));
+            bondsIndexator.Add((a1, a2), bonds.Count);
+            bonds.Add((d, mu));
 
-            int n = bondTable.RowCount;
-            AnchorStyles anchor = AnchorStyles.Top | AnchorStyles.Right;
-            bondTable.RowCount += 1;
-            bondTable.Controls.Add(new Label() { Text = $"{a1} - {a2}", Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight, AutoSize = true }, 0, n);
-            bondTable.Controls.Add(new Label() { Name = $"d{n}", Text = d.ToString(), Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight }, 1, n);
-            bondTable.Controls.Add(new Label() { Name = $"mu{n}", Text = mu.ToString(), Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight }, 2, n);
+            ListViewItem listItem = new ListViewItem($"{a1} - {a2}", 0);
+            listItem.SubItems.Add(d.ToString());
+            listItem.SubItems.Add(mu.ToString("N3"));
+            bondListView.Items.Add(listItem);
 
             if (!anglegroupBox.Enabled)
             {
@@ -276,6 +304,25 @@ namespace dipol_moment_gui
             AddBond(a1, a2, d);
         }
 
+        private void bond_delButton_Click(object sender, EventArgs e)
+        {
+            if(bondListView.SelectedIndices.Count == 0) return;
+            var i = bondListView.SelectedIndices[0];
+            
+            bondListView.Items.RemoveAt(i);
+            bonds.RemoveAt(i);
+
+            (Atom, Atom) toDel = (new Atom(), new Atom());
+            foreach(var bond in bondsIndexator)
+            {
+                if (bond.Value > i)
+                    bondsIndexator[bond.Key]--;
+                else if (bond.Value == i)
+                    toDel = bond.Key;
+            }
+            bondsIndexator.Remove(toDel);
+        }
+
         private void angle_aTextBox_TextChanged(object sender, EventArgs e)
         {
             double angle;
@@ -295,26 +342,26 @@ namespace dipol_moment_gui
                 a2 = atoms[anglecomboBox2.SelectedIndex],
                 a3 = atoms[anglecomboBox3.SelectedIndex];
 
-            if ((bonds.ContainsKey((a1, a2)) || bonds.ContainsKey((a2, a1))) && (bonds.ContainsKey((a2, a3)) || bonds.ContainsKey((a3, a2))))
+            if ((bondsIndexator.ContainsKey((a1, a2)) || bondsIndexator.ContainsKey((a2, a1))) && (bondsIndexator.ContainsKey((a2, a3)) || bondsIndexator.ContainsKey((a3, a2))))
             {
-                double mu = 0;//FUNC!!!-----------------------------------------
+                double mu = 000;//FUNC!!!-----------------------------------------
 
                 //
                 double mu1, mu2;
-                if (bonds.ContainsKey((a1, a2)))
-                    mu1 = bonds[(a1, a2)].Item3;
+                if (bondsIndexator.ContainsKey((a1, a2)))
+                    mu1 = bonds[bondsIndexator[(a1, a2)]].mu;
                 else
-                    mu1 = bonds[(a2, a1)].Item3;
+                    mu1 = bonds[bondsIndexator[(a2, a1)]].mu;
 
-                if (bonds.ContainsKey((a2, a3)))
-                    mu2 = bonds[(a2, a3)].Item3;
+                if (bondsIndexator.ContainsKey((a2, a3)))
+                    mu2 = bonds[bondsIndexator[(a2, a3)]].mu;
                 else
-                    mu2 = bonds[(a3, a2)].Item3;
+                    mu2 = bonds[bondsIndexator[(a3, a2)]].mu;
 
                 mu = calcMuByAngle(mu1, mu2, angle);
                 //
 
-                angle_muLabel.Text = mu.ToString();
+                angle_muLabel.Text = mu.ToString("N3");
             }  
             else
                 angle_muLabel.Text = "-";
@@ -326,54 +373,48 @@ namespace dipol_moment_gui
 
             //
             double mu1, mu2;
-            if (bonds.ContainsKey((a1, a2)))
-                mu1 = bonds[(a1, a2)].Item3;
+            if (bondsIndexator.ContainsKey((a1, a2)))
+                mu1 = bonds[bondsIndexator[(a1, a2)]].mu;
             else
-                mu1 = bonds[(a2, a1)].Item3;
+                mu1 = bonds[bondsIndexator[(a2, a1)]].mu;
 
-            if (bonds.ContainsKey((a2, a3)))
-                mu2 = bonds[(a2, a3)].Item3;
+            if (bondsIndexator.ContainsKey((a2, a3)))
+                mu2 = bonds[bondsIndexator[(a2, a3)]].mu;
             else
-                mu2 = bonds[(a3, a2)].Item3;
+                mu2 = bonds[bondsIndexator[(a3, a2)]].mu;
 
             mu = calcMuByAngle(mu1, mu2, angle);
             //
 
-            if (angles.ContainsKey((a1, a2, a3)) || angles.ContainsKey((a3, a2, a1)))
+            if (anglesIndexator.ContainsKey((a1, a2, a3)) || anglesIndexator.ContainsKey((a3, a2, a1)))
             {
                 if (MessageBox.Show(GetResource("value_info"), GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     (Atom, Atom, Atom) idx;
-                    if (angles.ContainsKey((a1, a2, a3)))
+                    if (anglesIndexator.ContainsKey((a1, a2, a3)))
                         idx = (a1, a2, a3);
                     else
                         idx = (a3, a2, a1);
 
-                    int i = angles[idx].Item1;
+                    int i = anglesIndexator[idx];
 
-                    var dlabel = (Label)angleTable.Controls[$"angle{i + 1}"];
-                    var mulabel = (Label)angleTable.Controls[$"mu{i + 1}"];
-                    angleTable.Controls.Remove(dlabel);
-                    angleTable.Controls.Remove(mulabel);
-                    angles[idx] = (i, angle, mu);
-                    dlabel.Text = angle.ToString();
-                    mulabel.Text = mu.ToString();
-                    angleTable.Controls.Add(dlabel, 1, i + 1);
-                    angleTable.Controls.Add(mulabel, 2, i + 1);
+                    angleListView.Items[i].SubItems[1].Text = angle.ToString();
+                    angleListView.Items[i].SubItems[2].Text = mu.ToString("N3");
+                    
+                    angles[i] = (angle, mu);
                 }
                 return;
             }
 
             groupcomboBox.Items.Add($"{a1} - {a2} - {a3}");
 
-            angles.Add((a1, a2, a3), (angles.Count, angle, mu));
+            anglesIndexator.Add((a1, a2, a3), angles.Count);
+            angles.Add((angle, mu));
 
-            int n = angleTable.RowCount;
-            AnchorStyles anchor = AnchorStyles.Top | AnchorStyles.Right;
-            angleTable.RowCount += 1;
-            angleTable.Controls.Add(new Label() { Text = $"{a1} - {a2} - {a3}", Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight, AutoSize = true }, 0, n);
-            angleTable.Controls.Add(new Label() { Name = $"angle{n}", Text = angle.ToString(), Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight }, 1, n);
-            angleTable.Controls.Add(new Label() { Name = $"mu{n}", Text = mu.ToString(), Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight }, 2, n);
+            ListViewItem listItem = new ListViewItem($"{a1} - {a2} - {a3}", 0);
+            listItem.SubItems.Add(angle.ToString());
+            listItem.SubItems.Add(mu.ToString("N3"));
+            angleListView.Items.Add(listItem);
 
             if (!groupGroupBox.Enabled)
             {
@@ -400,12 +441,12 @@ namespace dipol_moment_gui
                 a2 = atoms[anglecomboBox2.SelectedIndex],
                 a3 = atoms[anglecomboBox3.SelectedIndex];
 
-            if (!(bonds.ContainsKey((a1, a2)) || bonds.ContainsKey((a2, a1)))) 
+            if (!(bondsIndexator.ContainsKey((a1, a2)) || bondsIndexator.ContainsKey((a2, a1)))) 
             {
                 MessageBox.Show(string.Format(GetResource("bond_error"), $"{a1} - {a2}"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (!(bonds.ContainsKey((a2, a3)) || bonds.ContainsKey((a3, a2))))
+            if (!(bondsIndexator.ContainsKey((a2, a3)) || bondsIndexator.ContainsKey((a3, a2))))
             {
                 MessageBox.Show(string.Format(GetResource("bond_error"), $"{a2} - {a3}"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -428,22 +469,19 @@ namespace dipol_moment_gui
         {
             molecule.Add((a1, a2, a3));
 
-            int n = groupTable.RowCount;
-            AnchorStyles anchor = AnchorStyles.Top | AnchorStyles.Right;
-            groupTable.RowCount += 1;
-            groupTable.Controls.Add(new Label() { Text = groupcomboBox.Text, Dock = DockStyle.Fill, Anchor = anchor, TextAlign = ContentAlignment.MiddleRight, AutoSize = true }, 0, n);
+            groupListView.Items.Add(new ListViewItem(groupcomboBox.Text, 0));
 
             double mu = 1;//FUNC!!!-----------------------------------------
 
             //
             foreach (var group in molecule)
             {
-                mu *= angles[group].Item3;
+                mu *= angles[anglesIndexator[group]].mu;
             }
             mu = Math.Pow(mu, 1.0 / molecule.Count);
             //
 
-            group_muLabel.Text = mu.ToString();
+            group_muLabel.Text = mu.ToString("N3");
         }
 
         private void group_addButton_Click(object sender, EventArgs e)
@@ -467,17 +505,25 @@ namespace dipol_moment_gui
             }
             radiusTextBox.ForeColor = Color.Black;
 
+            double mu;
+            try
+            {
+                mu = Convert.ToDouble(group_muLabel.Text);
+            }
+            catch
+            {
+                return;
+            }
 
-            double mu = Convert.ToDouble(group_muLabel.Text);
             double V = Math.PI * r * r * r * 4.0 / 3.0;
-            double k = 1000000000.0 / 299792458; // коэффициент из D/A в Кл/м^2
-            group_PLabel.Text = (k * mu / V).ToString();
+            double k = 1000000000.0 / 299792458;                // коэффициент из D/A в Кл/м^2
+            group_PLabel.Text = (k * mu / V).ToString("N3");
         }
 
         private void file_createStrip_Click(object sender, EventArgs e)
         {
             if(atoms.Count == 0) return;
-            if (MessageBox.Show("Сохранить проект?", GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(GetResource("MessageBox.Info.SaveProj"), GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 file_saveStrip_Click(sender, e);
             savedFileName = "";
 
@@ -487,13 +533,7 @@ namespace dipol_moment_gui
             bond_indexTextBox2.Text = "";
             bond_dTextBox.Text = "";
 
-            Control c1 = bondTable.Controls[0];
-            Control c2 = bondTable.Controls[1];
-            Control c3 = bondTable.Controls[2];
-            bondTable.Controls.Clear();
-            bondTable.Controls.Add(c1);
-            bondTable.Controls.Add(c2);
-            bondTable.Controls.Add(c3);
+            bondListView.Items.Clear();
 
             anglegroupBox.Enabled = false;
 
@@ -502,73 +542,72 @@ namespace dipol_moment_gui
             anglecomboBox3.Items.Clear();
             angle_aTextBox.Text = "";
 
-            c1 = angleTable.Controls[0];
-            c2 = angleTable.Controls[1];
-            c3 = angleTable.Controls[2];
-            angleTable.Controls.Clear();
-            angleTable.Controls.Add(c1);
-            angleTable.Controls.Add(c2);
-            angleTable.Controls.Add(c3);
+            angleListView.Items.Clear();
 
             groupGroupBox.Enabled = false;
 
             groupcomboBox.Items.Clear();
 
-            c1 = groupTable.Controls[0];
-            groupTable.Controls.Clear();
-            groupTable.Controls.Add(c1);
+            groupListView.Items.Clear();
 
             radiusTextBox.Text = "";
             group_muLabel.Text = "";
             group_PLabel.Text = "-";
 
             atoms.Clear();
+            bondsIndexator.Clear();
             bonds.Clear();
+            anglesIndexator.Clear();
             angles.Clear();
             molecule.Clear();
         }
 
         private void file_openStrip_Click(object sender, EventArgs e)
         {
-            if (atoms.Count > 0 && MessageBox.Show("Сохранить проект?", GetResource("MessageBox.Info"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) //--------------------------------------------------------------------------------------------------------------------------------------------------ПЕРЕВОД
-                file_saveStrip_Click(sender, e);
-
+            file_createStrip_Click(sender, e);
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = ".txt";
             openFileDialog.Filter = "Текстовые файлы(*.txt)|*.txt";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                savedFileName = openFileDialog.FileName;
-
-                using (StreamReader sr = new StreamReader(savedFileName))
+                using (StreamReader sr = new StreamReader(openFileDialog.FileName))
                 {
-                    string line;
-                    sr.ReadLine(); // Bonds
-                    while ((line = sr.ReadLine()) != "")
+                    try
                     {
-                        var blocks = line.Split('\t');
-                        var bond = BondToAtoms(blocks[0]);
-                        AddBond(bond.Item1, bond.Item2, Convert.ToDouble(blocks[1]));
-                    }
+                        string line;
+                        sr.ReadLine(); // Bonds
+                        while ((line = sr.ReadLine()) != "")
+                        {
+                            var blocks = line.Split('\t');
+                            var bond = BondToAtoms(blocks[0]);
+                            AddBond(bond.Item1, bond.Item2, Convert.ToDouble(blocks[1]));
+                        }
 
-                    sr.ReadLine(); // Angles
-                    while ((line = sr.ReadLine()) != "")
+                        sr.ReadLine(); // Angles
+                        while ((line = sr.ReadLine()) != "")
+                        {
+                            var blocks = line.Split('\t');
+                            var bond = BondToAtoms(blocks[0]);
+                            AddAngle(bond.Item1, bond.Item2, bond.Item3, Convert.ToDouble(blocks[1]));
+                        }
+
+                        sr.ReadLine(); // Molecule
+                        while ((line = sr.ReadLine()) != "")
+                        {
+                            var bond = BondToAtoms(line);
+                            AddGroup(bond.Item1, bond.Item2, bond.Item3);
+                        }
+
+                        sr.ReadLine(); // Radius
+                        radiusTextBox.Text = sr.ReadLine();
+                    }
+                    catch
                     {
-                        var blocks = line.Split('\t');
-                        var bond = BondToAtoms(blocks[0]);
-                        AddAngle(bond.Item1, bond.Item2, bond.Item3, Convert.ToDouble(blocks[1]));
+                        MessageBox.Show(GetResource("MessageBox.Error.CorruptedFile"), GetResource("MessageBox.Error"), MessageBoxButtons.OK, MessageBoxIcon.Error); //   !!! Localize
+                        return;
                     }
-
-                    sr.ReadLine(); // Molecule
-                    while ((line = sr.ReadLine()) != "")
-                    {
-                        var bond = BondToAtoms(line);
-                        AddGroup(bond.Item1, bond.Item2, bond.Item3);
-                    }
-
-                    sr.ReadLine(); // Radius
-                    radiusTextBox.Text = sr.ReadLine();
                 }
+                savedFileName = openFileDialog.FileName;
             }
         }
 
@@ -579,20 +618,20 @@ namespace dipol_moment_gui
                 using (StreamWriter sw = new StreamWriter(savedFileName))
                 {
                     sw.WriteLine("Bonds");
-                    foreach (var bond in bonds)
+                    foreach (var bond in bondsIndexator)
                     {
-                        sw.Write(bond.Key.Item1.ToString() + " - ");     //a1
+                        sw.Write(bond.Key.Item1.ToString() + " - ");    //a1
                         sw.Write(bond.Key.Item2.ToString() + "\t");     //a2
-                        sw.WriteLine(bond.Value.Item2.ToString());      //d
+                        sw.WriteLine(bonds[bond.Value].d.ToString());   //d
                     }
                     sw.WriteLine();
                     sw.WriteLine("Angles");
-                    foreach(var angle in angles)
+                    foreach(var angle in anglesIndexator)
                     {
-                        sw.Write(angle.Key.Item1.ToString() + " - ");    //a1
-                        sw.Write(angle.Key.Item2.ToString() + " - ");    //a2
-                        sw.Write(angle.Key.Item3.ToString() + "\t");    //a3
-                        sw.WriteLine(angle.Value.Item2.ToString());     //angle
+                        sw.Write(angle.Key.Item1.ToString() + " - ");       //a1
+                        sw.Write(angle.Key.Item2.ToString() + " - ");       //a2
+                        sw.Write(angle.Key.Item3.ToString() + "\t");        //a3
+                        sw.WriteLine(angles[angle.Value].angle.ToString()); //angle
                     }
                     sw.WriteLine();
                     sw.WriteLine("Molecule");

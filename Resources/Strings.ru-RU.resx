@@ -174,4 +174,10 @@
   <data name="radiusLabel.Text" xml:space="preserve">
     <value>Радиус "топологического атома" r</value>
   </data>
+  <data name="MessageBox.Info.SaveProj" xml:space="preserve">
+    <value>Сохранить проект?</value>
+  </data>
+  <data name="MessageBox.Error.CorruptedFile" xml:space="preserve">
+    <value>Файл поврежден!</value>
+  </data>
 </root>

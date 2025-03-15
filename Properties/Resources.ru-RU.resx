@@ -117,67 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="fileStip.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="file_openStrip.Text" xml:space="preserve">
-    <value>Open</value>
-  </data>
-  <data name="file_createStrip.Text" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="file_saveStrip.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="langStrip.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="bondgroupBox.Text" xml:space="preserve">
-    <value>Dipole moment of a chemical bond</value>
-  </data>
-  <data name="bondLabel.Text" xml:space="preserve">
-    <value>Chemical bond length d:</value>
-  </data>
-  <data name="MessageBox.Error" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="MessageBox.Info" xml:space="preserve">
-    <value>Information</value>
-  </data>
-  <data name="addButton.Text" xml:space="preserve">
-    <value>Add</value>
-  </data>
-  <data name="value_error" xml:space="preserve">
-    <value>Invalid field "{0}" value!</value>
-  </data>
-  <data name="value_info" xml:space="preserve">
-    <value>Such an element already exists in the table. Replace it?</value>
-  </data>
-  <data name="bond_error" xml:space="preserve">
-    <value>The data does not contain the "{0}" relationship!</value>
-  </data>
-  <data name="tableLabel.Text" xml:space="preserve">
-    <value>Chemical bond</value>
-  </data>
-  <data name="anglegroupBox.Text" xml:space="preserve">
-    <value>Dipole moment of a group of three conjugated atoms</value>
-  </data>
-  <data name="angleLabel.Text" xml:space="preserve">
-    <value>Bond angle of a group of atoms α:</value>
-  </data>
-  <data name="groupGroupBox.Text" xml:space="preserve">
-    <value>Dipole moment of a functional "topological atom"</value>
-  </data>
-  <data name="groupLabel.Text" xml:space="preserve">
-    <value>Group of three conjugated atoms</value>
-  </data>
-  <data name="radiusLabel.Text" xml:space="preserve">
-    <value>Radius of the "topological atom" r</value>
-  </data>
   <data name="MessageBox.Info.SaveProj" xml:space="preserve">
-    <value>Save the project?</value>
-  </data>
-  <data name="MessageBox.Error.CorruptedFile" xml:space="preserve">
-    <value>The file is corrupted!</value>
+    <value>Сохранить проект?</value>
   </data>
 </root>

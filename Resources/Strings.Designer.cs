@@ -187,11 +187,29 @@ namespace dipol_moment_gui.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на The file is corrupted!.
+        /// </summary>
+        internal static string MessageBox_Error_CorruptedFile {
+            get {
+                return ResourceManager.GetString("MessageBox.Error.CorruptedFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Information.
         /// </summary>
         internal static string MessageBox_Info {
             get {
                 return ResourceManager.GetString("MessageBox.Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save the project?.
+        /// </summary>
+        internal static string MessageBox_Info_SaveProj {
+            get {
+                return ResourceManager.GetString("MessageBox.Info.SaveProj", resourceCulture);
             }
         }
         
