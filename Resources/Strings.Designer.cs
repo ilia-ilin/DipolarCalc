@@ -115,6 +115,15 @@ namespace dipol_moment_gui.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Delete.
+        /// </summary>
+        internal static string delButton_Text {
+            get {
+                return ResourceManager.GetString("delButton.Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Create.
         /// </summary>
         internal static string file_createStrip_Text {

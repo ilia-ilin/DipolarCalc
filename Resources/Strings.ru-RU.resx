@@ -180,4 +180,7 @@
   <data name="MessageBox.Error.CorruptedFile" xml:space="preserve">
     <value>Файл поврежден!</value>
   </data>
+  <data name="delButton.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
 </root>
