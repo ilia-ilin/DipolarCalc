@@ -81,6 +81,8 @@
             this.groupcomboBox = new System.Windows.Forms.ComboBox();
             this.group_addButton = new System.Windows.Forms.Button();
             this.groupLabel = new System.Windows.Forms.Label();
+            this.group_delButton = new System.Windows.Forms.Button();
+            this.angle_delButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.bondgroupBox.SuspendLayout();
             this.anglegroupBox.SuspendLayout();
@@ -181,13 +183,12 @@
             // bond_delButton
             // 
             this.bond_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bond_delButton.Location = new System.Drawing.Point(698, 120);
+            this.bond_delButton.Location = new System.Drawing.Point(789, 190);
             this.bond_delButton.Name = "bond_delButton";
             this.bond_delButton.Size = new System.Drawing.Size(100, 26);
             this.bond_delButton.TabIndex = 14;
             this.bond_delButton.Text = "Delete";
             this.bond_delButton.UseVisualStyleBackColor = true;
-            this.bond_delButton.Visible = false;
             this.bond_delButton.Click += new System.EventHandler(this.bond_delButton_Click);
             // 
             // bondListView
@@ -259,7 +260,7 @@
             // bond_addButton
             // 
             this.bond_addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bond_addButton.Location = new System.Drawing.Point(789, 190);
+            this.bond_addButton.Location = new System.Drawing.Point(789, 158);
             this.bond_addButton.Name = "bond_addButton";
             this.bond_addButton.Size = new System.Drawing.Size(100, 26);
             this.bond_addButton.TabIndex = 8;
@@ -360,6 +361,7 @@
             // 
             this.anglegroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.anglegroupBox.Controls.Add(this.angle_delButton);
             this.anglegroupBox.Controls.Add(this.angleListView);
             this.anglegroupBox.Controls.Add(this.label9);
             this.anglegroupBox.Controls.Add(this.anglecomboBox1);
@@ -464,7 +466,7 @@
             // angle_addButton
             // 
             this.angle_addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.angle_addButton.Location = new System.Drawing.Point(789, 190);
+            this.angle_addButton.Location = new System.Drawing.Point(789, 158);
             this.angle_addButton.Name = "angle_addButton";
             this.angle_addButton.Size = new System.Drawing.Size(100, 26);
             this.angle_addButton.TabIndex = 8;
@@ -541,6 +543,7 @@
             // 
             this.groupGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupGroupBox.Controls.Add(this.group_delButton);
             this.groupGroupBox.Controls.Add(this.groupListView);
             this.groupGroupBox.Controls.Add(this.group_PLabel);
             this.groupGroupBox.Controls.Add(this.label13);
@@ -657,7 +660,7 @@
             // group_addButton
             // 
             this.group_addButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.group_addButton.Location = new System.Drawing.Point(789, 190);
+            this.group_addButton.Location = new System.Drawing.Point(789, 158);
             this.group_addButton.Name = "group_addButton";
             this.group_addButton.Size = new System.Drawing.Size(100, 26);
             this.group_addButton.TabIndex = 8;
@@ -676,6 +679,30 @@
             this.groupLabel.TabIndex = 0;
             this.groupLabel.Text = "Group of three conjugated atoms";
             this.groupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // group_delButton
+            // 
+            this.group_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.group_delButton.Location = new System.Drawing.Point(789, 190);
+            this.group_delButton.Name = "group_delButton";
+            this.group_delButton.Size = new System.Drawing.Size(100, 26);
+            this.group_delButton.TabIndex = 27;
+            this.group_delButton.TabStop = false;
+            this.group_delButton.Text = "Delete";
+            this.group_delButton.UseVisualStyleBackColor = true;
+            this.group_delButton.Click += new System.EventHandler(this.group_delButton_Click);
+            // 
+            // angle_delButton
+            // 
+            this.angle_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.angle_delButton.Location = new System.Drawing.Point(789, 190);
+            this.angle_delButton.Name = "angle_delButton";
+            this.angle_delButton.Size = new System.Drawing.Size(100, 26);
+            this.angle_delButton.TabIndex = 17;
+            this.angle_delButton.TabStop = false;
+            this.angle_delButton.Text = "Delete";
+            this.angle_delButton.UseVisualStyleBackColor = true;
+            this.angle_delButton.Click += new System.EventHandler(this.angle_delButton_Click);
             // 
             // MainForm
             // 
@@ -762,6 +789,8 @@
         private System.Windows.Forms.ListView groupListView;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.Button bond_delButton;
+        private System.Windows.Forms.Button group_delButton;
+        private System.Windows.Forms.Button angle_delButton;
     }
 }
 
