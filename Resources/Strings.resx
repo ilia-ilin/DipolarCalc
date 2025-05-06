@@ -183,4 +183,10 @@
   <data name="delButton.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="OpenFileDialog.Filter" xml:space="preserve">
+    <value>Text files (*.txt)|*.txt|Chemical files (*.cml)|*.cml|All files (*.*)|*.*</value>
+  </data>
+  <data name="MessageBox.Error.NoAtomType" xml:space="preserve">
+    <value>Configuration file "electroneg.toml" does not contain an atom named {0}!</value>
+  </data>
 </root>

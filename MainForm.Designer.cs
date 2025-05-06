@@ -54,6 +54,7 @@
             this.bondComboBox1 = new System.Windows.Forms.ComboBox();
             this.bondLabel = new System.Windows.Forms.Label();
             this.anglegroupBox = new System.Windows.Forms.GroupBox();
+            this.angle_delButton = new System.Windows.Forms.Button();
             this.angleListView = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,6 +71,7 @@
             this.anglecomboBox2 = new System.Windows.Forms.ComboBox();
             this.angleLabel = new System.Windows.Forms.Label();
             this.groupGroupBox = new System.Windows.Forms.GroupBox();
+            this.group_delButton = new System.Windows.Forms.Button();
             this.groupListView = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.group_PLabel = new System.Windows.Forms.Label();
@@ -81,8 +83,6 @@
             this.groupcomboBox = new System.Windows.Forms.ComboBox();
             this.group_addButton = new System.Windows.Forms.Button();
             this.groupLabel = new System.Windows.Forms.Label();
-            this.group_delButton = new System.Windows.Forms.Button();
-            this.angle_delButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.bondgroupBox.SuspendLayout();
             this.anglegroupBox.SuspendLayout();
@@ -314,12 +314,6 @@
             this.bondComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bondComboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bondComboBox2.FormattingEnabled = true;
-            this.bondComboBox2.Items.AddRange(new object[] {
-            "H",
-            "C",
-            "N",
-            "O",
-            "P"});
             this.bondComboBox2.Location = new System.Drawing.Point(651, 29);
             this.bondComboBox2.Name = "bondComboBox2";
             this.bondComboBox2.Size = new System.Drawing.Size(46, 26);
@@ -333,12 +327,6 @@
             this.bondComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bondComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bondComboBox1.FormattingEnabled = true;
-            this.bondComboBox1.Items.AddRange(new object[] {
-            "H",
-            "C",
-            "N",
-            "O",
-            "P"});
             this.bondComboBox1.Location = new System.Drawing.Point(517, 29);
             this.bondComboBox1.Name = "bondComboBox1";
             this.bondComboBox1.Size = new System.Drawing.Size(46, 26);
@@ -381,6 +369,18 @@
             this.anglegroupBox.TabIndex = 13;
             this.anglegroupBox.TabStop = false;
             this.anglegroupBox.Text = "Dipole moment of a group of three conjugated atoms";
+            // 
+            // angle_delButton
+            // 
+            this.angle_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.angle_delButton.Location = new System.Drawing.Point(789, 190);
+            this.angle_delButton.Name = "angle_delButton";
+            this.angle_delButton.Size = new System.Drawing.Size(100, 26);
+            this.angle_delButton.TabIndex = 17;
+            this.angle_delButton.TabStop = false;
+            this.angle_delButton.Text = "Delete";
+            this.angle_delButton.UseVisualStyleBackColor = true;
+            this.angle_delButton.Click += new System.EventHandler(this.angle_delButton_Click);
             // 
             // angleListView
             // 
@@ -562,6 +562,18 @@
             this.groupGroupBox.TabStop = false;
             this.groupGroupBox.Text = "Dipole moment of a functional \"topological atom\"";
             // 
+            // group_delButton
+            // 
+            this.group_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.group_delButton.Location = new System.Drawing.Point(789, 190);
+            this.group_delButton.Name = "group_delButton";
+            this.group_delButton.Size = new System.Drawing.Size(100, 26);
+            this.group_delButton.TabIndex = 27;
+            this.group_delButton.TabStop = false;
+            this.group_delButton.Text = "Delete";
+            this.group_delButton.UseVisualStyleBackColor = true;
+            this.group_delButton.Click += new System.EventHandler(this.group_delButton_Click);
+            // 
             // groupListView
             // 
             this.groupListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -679,30 +691,6 @@
             this.groupLabel.TabIndex = 0;
             this.groupLabel.Text = "Group of three conjugated atoms";
             this.groupLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // group_delButton
-            // 
-            this.group_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.group_delButton.Location = new System.Drawing.Point(789, 190);
-            this.group_delButton.Name = "group_delButton";
-            this.group_delButton.Size = new System.Drawing.Size(100, 26);
-            this.group_delButton.TabIndex = 27;
-            this.group_delButton.TabStop = false;
-            this.group_delButton.Text = "Delete";
-            this.group_delButton.UseVisualStyleBackColor = true;
-            this.group_delButton.Click += new System.EventHandler(this.group_delButton_Click);
-            // 
-            // angle_delButton
-            // 
-            this.angle_delButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.angle_delButton.Location = new System.Drawing.Point(789, 190);
-            this.angle_delButton.Name = "angle_delButton";
-            this.angle_delButton.Size = new System.Drawing.Size(100, 26);
-            this.angle_delButton.TabIndex = 17;
-            this.angle_delButton.TabStop = false;
-            this.angle_delButton.Text = "Delete";
-            this.angle_delButton.UseVisualStyleBackColor = true;
-            this.angle_delButton.Click += new System.EventHandler(this.angle_delButton_Click);
             // 
             // MainForm
             // 

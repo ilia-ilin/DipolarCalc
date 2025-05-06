@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dipol_moment_gui", "dipol_moment_gui.csproj", "{9E6FB2CF-2596-4A58-8547-C0D0102E7834}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DipolarCalc", "DipolarCalc.csproj", "{9E6FB2CF-2596-4A58-8547-C0D0102E7834}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

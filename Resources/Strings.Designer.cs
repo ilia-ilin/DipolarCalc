@@ -205,6 +205,15 @@ namespace dipol_moment_gui.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Configuration file &quot;electroneg.toml&quot; does not contain an atom named {0}!.
+        /// </summary>
+        internal static string MessageBox_Error_NoAtomType {
+            get {
+                return ResourceManager.GetString("MessageBox.Error.NoAtomType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Information.
         /// </summary>
         internal static string MessageBox_Info {
@@ -219,6 +228,15 @@ namespace dipol_moment_gui.Resources {
         internal static string MessageBox_Info_SaveProj {
             get {
                 return ResourceManager.GetString("MessageBox.Info.SaveProj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Text files (*.txt)|*.txt|Chemical files (*.cml)|*.cml|All files (*.*)|*.*.
+        /// </summary>
+        internal static string OpenFileDialog_Filter {
+            get {
+                return ResourceManager.GetString("OpenFileDialog.Filter", resourceCulture);
             }
         }
         

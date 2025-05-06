@@ -59,14 +59,5 @@ namespace dipol_moment_gui.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Save the project?.
-        /// </summary>
-        internal static string MessageBox_Info_SaveProj {
-            get {
-                return ResourceManager.GetString("MessageBox.Info.SaveProj", resourceCulture);
-            }
-        }
     }
 }
