@@ -32,50 +32,64 @@ DipolarCalc implements analytical expressions for these quantities, allowing for
 The software implements the following computational features:
 
 1. **Calculation of the dipole moment of an individual chemical bond**  
-   <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="images/dipole_moment_white.svg">
-     <source media="(prefers-color-scheme: light)" srcset="images/dipole_moment.svg">
-     <img src="images/dipole_moment.svg" alt="variable">
-   </picture>
-   where <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="images/Delta_chi_ab_white.svg">
-     <source media="(prefers-color-scheme: light)" srcset="images/Delta_chi_ab.svg">
-     <img src="images/Delta_chi_ab.svg" alt="variable">
-   </picture> is the difference in atomic electronegativity and d is the bond length (Å).
+   <span class="formula-img">
+     <img src="images/dipole_moment.svg" class="light-mode">
+     <img src="images/dipole_moment_white.svg" class="dark-mode">
+   </span>
+   where <span class="variable-img">
+     <img src="images/Delta_chi_ab.svg" class="light-mode">
+     <img src="images/Delta_chi_ab_white.svg" class="dark-mode">
+   </span> is the difference in atomic electronegativity and d is the bond length (Å).
 
 2. **Calculation of the total dipole moment of a group of three conjugated atoms**,  
    accounting for the angle between bonds:  
-   <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="images/triatomic_group_dipole_white.svg">
-     <source media="(prefers-color-scheme: light)" srcset="images/triatomic_group_dipole.svg">
-     <img src="images/triatomic_group_dipole.svg" alt="variable">
-   </picture>
+   <span class="formula-img">
+     <img src="images/triatomic_group_dipole.svg" class="light-mode">
+     <img src="images/triatomic_group_dipole_white.svg" class="dark-mode">
+   </span>
 
 3. **Computation of the total bond dipole moment of an FTA**  
    as the geometric mean of dipole moments of all triatomic groups:  
-   <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="images/fta_total_dipole_white.svg">
-     <source media="(prefers-color-scheme: light)" srcset="images/fta_total_dipole.svg">
-     <img src="images/fta_total_dipole.svg" alt="variable">
-   </picture>
+   <span class="formula-img">
+     <img src="images/fta_total_dipole.svg" class="light-mode">
+     <img src="images/fta_total_dipole_white.svg" class="dark-mode">
+   </span>
 
 4. **Calculation of FTA polarization**  
    based on the total dipole moment per unit volume:  
-   <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="images/fta_polarization_white.svg">
-     <source media="(prefers-color-scheme: light)" srcset="images/fta_polarization.svg">
-     <img src="images/fta_polarization.svg" alt="variable">
-   </picture>
-   where <picture>
-     <source media="(prefers-color-scheme: dark)" srcset="images/V_white.svg">
-     <source media="(prefers-color-scheme: light)" srcset="images/V.svg">
-     <img src="images/V.svg" alt="variable">
-   </picture> is the volume of a sphere with a radius equal to the bond length of the FTA's central atom.
+   <span class="formula-img">
+     <img src="images/fta_polarization.svg" class="light-mode">
+     <img src="images/fta_polarization_white.svg" class="dark-mode">
+   </span>
+   where <span class="variable-img">
+     <img src="images/V.svg" class="light-mode">
+     <img src="images/V_white.svg" class="dark-mode">
+   </span> is the volume of a sphere with a radius equal to the bond length of the FTA's central atom.
 
 5. **Additional functionality:**  
    - automatic error handling and data validation;  
    - saving and loading of calculation sessions;  
    - multitasking and localization (English/Russian).
+
+<style>
+.formula-img, .variable-img {
+  display: inline-block;
+}
+.light-mode {
+  display: inline;
+}
+.dark-mode {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  .light-mode {
+    display: none;
+  }
+  .dark-mode {
+    display: inline;
+  }
+}
+</style>
 
 ---
 
