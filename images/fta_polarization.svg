@@ -10,18 +10,24 @@ src: url("data:font/truetype;charset=utf-8;base64,AAEAAAAKAIAAAwAgaGVhZDFSlNQAAA
 @font-face {font-family:'cmr10';
 src: url("data:font/truetype;charset=utf-8;base64,AAEAAAAKAIAAAwAgaGVhZDFSlNQAAACsAAAANmhoZWEDywOXAAAA5AAAACRtYXhwFxAzHQAAAQgAAAAgaG10eAVhADgAAAEoAAAACGxvY2EAAAEMAAABMAAAAAxnbHlmHOMFnAAAATwAAADUT1MvMh1KGSsAAAIQAAAAYG5hbWWAWzCPAAACcAAAAQhjbWFwAAwAcAAAA3gAAAAscG9zdAADAAAAAAOkAAAAIAABAAAAAAAAQdtlYl8PPPUAAAPoAAAAAOUhJfgAAAAA5SEl+AAAAAAIAAgAAAAABgAAAAEAAAAAAAEAAAAAAAAAAAQD/9j/kgPxAAAAAAAAAAAAAAAAAAAAAAACAAEAAAACEAAEAAD/AP8AAgAQAP8A/wD/EAAgAAD/AB4CWAAAAwkAOAAAAAAAAAA4AAAA1AACAAAAAAJYCAAAAwAHAAABAQEBAQEBAQAAAAACWAAA/a0CTgAA/bIAAAgAAAD4AAAFAAAH9gAAAAIAOACFAtEBbwANABsAAAEAAAEAAAEBAAABAAABAQAAAQAAAQEAAAEAAAECrwALABcAAAAA/+n/9v2p//X/6gAAAAAAFgAMAlYACgAXAAAAAP/p//X9q//0/+oAAAAAABYACwFHAAAABQAPAA8ABQAAAAAAAP/7//H/8f/7AAD/PgAAAAUADwAPAAUAAAAAAAD/+//x//H/+wAAAAMEMAGQAAUACAWaBTMAAAEbBZoFMwAAA9EAZgISAAACAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAg+wIFmv5mAM0GtAGiAAAAAAAAAAAEAAAAAAAAIAAAAAAADACWAAEAAAAAAAEABQAAAAEAAAAAAAIABwAFAAEAAAAAAAMABQAMAAEAAAAAAAQABQARAAEAAAAAAAUACwAWAAEAAAAAAAYABQAhAAMAAQQJAAEACgAmAAMAAQQJAAIADgAwAAMAAQQJAAMACgA+AAMAAQQJAAQACgBIAAMAAQQJAAUAFgBSAAMAAQQJAAYACgBoY21yMTBSZWd1bGFyY21yMTBjbXIxMFZlcnNpb24gMS4xY21yMTAAYwBtAHIAMQAwAFIAZQBnAHUAbABhAHIAYwBtAHIAMQAwAGMAbQByADEAMABWAGUAcgBzAGkAbwBuACAAMQAuADEAYwBtAHIAMQAwAAAAAQADAAEAAAAMAAQAIAAAAAQABAABAAAAPf//AAAAPf///8QAAQAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==");
 }
+
+text, .colorable-path { fill: black; }
+@media (prefers-color-scheme: dark) {
+    text, .colorable-path { fill: white; }
+}
+
 ]]></style>
 </defs>
 
 <g transform="matrix(1.3333 0 0 1.3333 0 0)">
 	<g transform="matrix(1 0 0 1 -288.00034 -135.19054)">
     <path id=""  transform="matrix(1 0 0 1 0 0)"  d="M288.00034 135.19054L323.24747 135.19054L323.24747 154.05367L288.00034 154.05367" stroke="none" fill="#000000" fill-rule="evenodd" fill-opacity="0" />
-		<text transform="matrix(1 0 0 1 0 0)" x="288.50034" y="146.71979" style="fill:#000000;font-family:'cmmi10';" font-size="9.96264">P</text>
-		<text transform="matrix(1 0 0 1 0 0)" x="299.04752" y="146.71979" style="fill:#000000;font-family:'cmr10';" font-size="9.96264">=</text>
-		<text transform="matrix(1 0 0 1 0 0)" x="311.77036" y="139.98" style="fill:#000000;font-family:'cmmi10';" font-size="9.96264">Ù</text>
-    <path id=""  transform="matrix(1 0 0 1 0 0)"  d="M310.7591 144.02988L318.78455 144.02988L318.78455 144.42836L310.7591 144.42836z" stroke="none" fill="#000000" fill-rule="evenodd" />
-		<text transform="matrix(1 0 0 1 0 0)" x="310.7591" y="153.55367" style="fill:#000000;font-family:'cmmi10';" font-size="9.96264">V</text>
-		<text transform="matrix(1 0 0 1 0 0)" x="319.98007" y="146.71979" style="fill:#000000;font-family:'cmmi10';" font-size="9.96264">;</text>
+		<text transform="matrix(1 0 0 1 0 0)" x="288.50034" y="146.71979" style="font-family:'cmmi10';" font-size="9.96264">P</text>
+		<text transform="matrix(1 0 0 1 0 0)" x="299.04752" y="146.71979" style="font-family:'cmr10';" font-size="9.96264">=</text>
+		<text transform="matrix(1 0 0 1 0 0)" x="311.77036" y="139.98" style="font-family:'cmmi10';" font-size="9.96264">Ù</text>
+    <path class="colorable-path" id=""  transform="matrix(1 0 0 1 0 0)"  d="M310.7591 144.02988L318.78455 144.02988L318.78455 144.42836L310.7591 144.42836z" stroke="none" />
+		<text transform="matrix(1 0 0 1 0 0)" x="310.7591" y="153.55367" style="font-family:'cmmi10';" font-size="9.96264">V</text>
+		<text transform="matrix(1 0 0 1 0 0)" x="319.98007" y="146.71979" style="font-family:'cmmi10';" font-size="9.96264">;</text>
 	</g>
 </g>
 </svg>
