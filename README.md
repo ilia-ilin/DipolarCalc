@@ -35,7 +35,7 @@ The software implements the following computational features:
    <picture>
      <source media="(prefers-color-scheme: dark)" srcset="images/dipole_moment_white.svg">
      <source media="(prefers-color-scheme: light)" srcset="images/dipole_moment.svg">
-     <img src="images/dipole_moment.svg" alt="formula">
+     <img src="images/dipole_moment.svg" alt="variable">
    </picture>
    where <picture>
      <source media="(prefers-color-scheme: dark)" srcset="images/Delta_chi_ab_white.svg">
@@ -48,7 +48,7 @@ The software implements the following computational features:
    <picture>
      <source media="(prefers-color-scheme: dark)" srcset="images/triatomic_group_dipole_white.svg">
      <source media="(prefers-color-scheme: light)" srcset="images/triatomic_group_dipole.svg">
-     <img src="images/triatomic_group_dipole.svg" alt="formula">
+     <img src="images/triatomic_group_dipole.svg" alt="variable">
    </picture>
 
 3. **Computation of the total bond dipole moment of an FTA**  
@@ -56,7 +56,7 @@ The software implements the following computational features:
    <picture>
      <source media="(prefers-color-scheme: dark)" srcset="images/fta_total_dipole_white.svg">
      <source media="(prefers-color-scheme: light)" srcset="images/fta_total_dipole.svg">
-     <img src="images/fta_total_dipole.svg" alt="formula">
+     <img src="images/fta_total_dipole.svg" alt="variable">
    </picture>
 
 4. **Calculation of FTA polarization**  
@@ -64,7 +64,7 @@ The software implements the following computational features:
    <picture>
      <source media="(prefers-color-scheme: dark)" srcset="images/fta_polarization_white.svg">
      <source media="(prefers-color-scheme: light)" srcset="images/fta_polarization.svg">
-     <img src="images/fta_polarization.svg" alt="formula">
+     <img src="images/fta_polarization.svg" alt="variable">
    </picture>
    where <picture>
      <source media="(prefers-color-scheme: dark)" srcset="images/V_white.svg">
