@@ -1,4 +1,4 @@
-﻿namespace dipol_moment_gui
+﻿namespace DipolarCalc
 {
     partial class MainForm
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace dipol_moment_gui
+namespace DipolarCalc
 {
     internal static class Program
     {

@@ -1,4 +1,4 @@
-﻿using dipol_moment_gui.Resources;
+﻿using DipolarCalc.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,9 +11,7 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
-
-namespace dipol_moment_gui
+namespace DipolarCalc
 {
     public partial class MainForm : Form
     {
@@ -194,7 +192,7 @@ namespace dipol_moment_gui
         private void ApplyLanguage(CultureInfo cultureInfo)
         {
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            ResourceManager LocRM = new ResourceManager("dipol_moment_gui.Resources.Strings", typeof(Strings).Assembly);
+            ResourceManager LocRM = new ResourceManager("DipolarCalc.Resources.Strings", typeof(Strings).Assembly);
             CultureInfo currentCulture = Thread.CurrentThread.CurrentUICulture;
             fileStrip.Text = LocRM.GetString("fileStip.Text", currentCulture);
             file_createStrip.Text = LocRM.GetString("file_createStrip.Text", currentCulture);
@@ -224,7 +222,7 @@ namespace dipol_moment_gui
         }
         private string GetResource(string name)
         {
-            ResourceManager LocRM = new ResourceManager("dipol_moment_gui.Resources.Strings", typeof(Strings).Assembly);
+            ResourceManager LocRM = new ResourceManager("DipolarCalc.Resources.Strings", typeof(Strings).Assembly);
             return LocRM.GetString(name, Thread.CurrentThread.CurrentUICulture);
         }
 
@@ -288,6 +286,8 @@ namespace dipol_moment_gui
         {
             file_createStrip_Click(sender, e);
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = "";
+            openFileDialog.RestoreDirectory = true;
             openFileDialog.DefaultExt = ".txt";
             openFileDialog.Filter = GetResource("OpenFileDialog.Filter");
             if (openFileDialog.ShowDialog() == DialogResult.OK)
