@@ -32,39 +32,27 @@ DipolarCalc implements analytical expressions for these quantities, allowing for
 The software implements the following computational features:
 
 1. **Calculation of the dipole moment of an individual chemical bond**  
-   <span class="formula-img">
-     <img src="images/dipole_moment.svg" class="light-mode">
-     <img src="images/dipole_moment_white.svg" class="dark-mode">
-   </span>
-   where <span class="variable-img">
-     <img src="images/Delta_chi_ab.svg" class="light-mode">
-     <img src="images/Delta_chi_ab_white.svg" class="dark-mode">
-   </span> is the difference in atomic electronegativity and d is the bond length (Å).
+   <img src="images/dipole_moment.svg" class="img-light">
+   <img src="images/dipole_moment_white.svg" class="img-dark">
+   where <img src="images/Delta_chi_ab.svg" class="img-light">
+   <img src="images/Delta_chi_ab_white.svg" class="img-dark"> is the difference in atomic electronegativity and d is the bond length (Å).
 
 2. **Calculation of the total dipole moment of a group of three conjugated atoms**,  
    accounting for the angle between bonds:  
-   <span class="formula-img">
-     <img src="images/triatomic_group_dipole.svg" class="light-mode">
-     <img src="images/triatomic_group_dipole_white.svg" class="dark-mode">
-   </span>
+   <img src="images/triatomic_group_dipole.svg" class="img-light">
+   <img src="images/triatomic_group_dipole_white.svg" class="img-dark">
 
 3. **Computation of the total bond dipole moment of an FTA**  
    as the geometric mean of dipole moments of all triatomic groups:  
-   <span class="formula-img">
-     <img src="images/fta_total_dipole.svg" class="light-mode">
-     <img src="images/fta_total_dipole_white.svg" class="dark-mode">
-   </span>
+   <img src="images/fta_total_dipole.svg" class="img-light">
+   <img src="images/fta_total_dipole_white.svg" class="img-dark">
 
 4. **Calculation of FTA polarization**  
    based on the total dipole moment per unit volume:  
-   <span class="formula-img">
-     <img src="images/fta_polarization.svg" class="light-mode">
-     <img src="images/fta_polarization_white.svg" class="dark-mode">
-   </span>
-   where <span class="variable-img">
-     <img src="images/V.svg" class="light-mode">
-     <img src="images/V_white.svg" class="dark-mode">
-   </span> is the volume of a sphere with a radius equal to the bond length of the FTA's central atom.
+   <img src="images/fta_polarization.svg" class="img-light">
+   <img src="images/fta_polarization_white.svg" class="img-dark">
+   where <img src="images/V.svg" class="img-light">
+   <img src="images/V_white.svg" class="img-dark"> is the volume of a sphere with a radius equal to the bond length of the FTA's central atom.
 
 5. **Additional functionality:**  
    - automatic error handling and data validation;  
@@ -72,20 +60,17 @@ The software implements the following computational features:
    - multitasking and localization (English/Russian).
 
 <style>
-.formula-img, .variable-img {
-  display: inline-block;
-}
-.light-mode {
+.img-light {
   display: inline;
 }
-.dark-mode {
+.img-dark {
   display: none;
 }
 @media (prefers-color-scheme: dark) {
-  .light-mode {
+  .img-light {
     display: none;
   }
-  .dark-mode {
+  .img-dark {
     display: inline;
   }
 }
