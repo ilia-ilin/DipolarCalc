@@ -32,21 +32,21 @@ DipolarCalc implements analytical expressions for these quantities, allowing for
 The software implements the following computational features:
 
 1. **Calculation of the dipole moment of an individual chemical bond**  
-   μ = |Δχ_ab| × d,  
-   where Δχ_ab is the difference in atomic electronegativity and d is the bond length (Å).
+   ![formula](images/dipole_moment.svg) 
+   where ![variable](images/Delta_chi_ab.svg) is the difference in atomic electronegativity and d is the bond length (Å).
 
 2. **Calculation of the total dipole moment of a group of three conjugated atoms**,  
    accounting for the angle between bonds:  
-   μ_tot = √(μ₁² + μ₂² − 2μ₁μ₂cosα).
+   ![formula](images/triatomic_group_dipole.svg) 
 
 3. **Computation of the total bond dipole moment of an FTA**  
    as the geometric mean of dipole moments of all triatomic groups:  
-   μ_FTA = (∏ μ_i)^(1/n).
+   ![formula](images/fta_total_dipole.svg)
 
 4. **Calculation of FTA polarization**  
    based on the total dipole moment per unit volume:  
-   P = μ / V,  
-   where V is the volume of a sphere with a radius equal to the bond length of the FTA’s central atom.
+   ![formula](images/fta_polarization.svg)
+   where ![variable](images/V.svg) is the volume of a sphere with a radius equal to the bond length of the FTA’s central atom.
 
 5. **Additional functionality:**  
    - automatic error handling and data validation;  
@@ -113,20 +113,6 @@ If you use DipolarCalc in your research, please cite:
 > *The DipolarCalc Software System for Assessing the Polarization of Biological Molecular Structures*.  
 > **Doklady Mathematics**, 2025, Vol. 111, No. 2, pp. 147–150.  
 > DOI: [10.1134/S1064562425600113](https://doi.org/10.1134/S1064562425600113)
-
-### BibTeX
-```bibtex
-@article{Ilin2025DipolarCalc,
-  author    = {Il’in, I.K. and Uss, Yu.A. and Shamolina, M.V. and Yan’ko, L.A.},
-  title     = {The DipolarCalc Software System for Assessing the Polarization of Biological Molecular Structures},
-  journal   = {Doklady Mathematics},
-  year      = {2025},
-  volume    = {111},
-  number    = {2},
-  pages     = {147--150},
-  doi       = {10.1134/S1064562425600113}
-}
-```
 
 ---
 
