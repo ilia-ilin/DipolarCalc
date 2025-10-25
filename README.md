@@ -33,20 +33,20 @@ The software implements the following computational features:
 
 1. **Calculation of the dipole moment of an individual chemical bond**  
    ![formula](images/dipole_moment.svg) 
-   where ![variable](images/Delta_chi_ab.svg) is the difference in atomic electronegativity and d is the bond length (Å).
+   , where ![variable](images/Delta_chi_ab.svg) is the difference in atomic electronegativity and d is the bond length (Å).
 
 2. **Calculation of the total dipole moment of a group of three conjugated atoms**,  
    accounting for the angle between bonds:  
-   ![formula](images/triatomic_group_dipole.svg) 
+   ![formula](images/triatomic_group_dipole.svg).
 
 3. **Computation of the total bond dipole moment of an FTA**  
    as the geometric mean of dipole moments of all triatomic groups:  
-   ![formula](images/fta_total_dipole.svg)
+   ![formula](images/fta_total_dipole.svg).
 
 4. **Calculation of FTA polarization**  
    based on the total dipole moment per unit volume:  
    ![formula](images/fta_polarization.svg)
-   where ![variable](images/V.svg) is the volume of a sphere with a radius equal to the bond length of the FTA’s central atom.
+   , where ![variable](images/V.svg) is the volume of a sphere with a radius equal to the bond length of the FTA’s central atom.
 
 5. **Additional functionality:**  
    - automatic error handling and data validation;  
