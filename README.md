@@ -109,7 +109,7 @@ The interface includes three main computational blocks:
 
 If you use DipolarCalc in your research, please cite:
 
-> Il’in I.K., Uss Yu.A., Shamolina M.V., Yan’ko L.A.  
+> Il’in I.K., Uss Yu.A., Shamolin M.V., Yan’ko L.A.  
 > *The DipolarCalc Software System for Assessing the Polarization of Biological Molecular Structures*.  
 > **Doklady Mathematics**, 2025, Vol. 111, No. 2, pp. 147–150.  
 > DOI: [10.1134/S1064562425600113](https://doi.org/10.1134/S1064562425600113)
@@ -120,7 +120,7 @@ If you use DipolarCalc in your research, please cite:
 
 - **I.K. Il’in** — *ilia.ilin.k@gmail.com*  
 - **Yu.A. Uss** — *ussyuri@gmail.com*  
-- **M.V. Shamolina** — *shamolin@rambler.ru*  
+- **M.V. Shamolin** — *shamolin@rambler.ru*  
 - **L.A. Yan’ko** — *leanidyanko@yandex.ru*  
 
 ---
@@ -138,5 +138,5 @@ The source code is provided exclusively for **academic and research purposes**.
 
 Reproduction, modification, distribution, or commercial use of the software — in whole or in part — is **prohibited without explicit written permission** from the authors.  
 
-© 2025 I.K. Il’in, Yu.A. Uss, M.V. Shamolina, L.A. Yan’ko.  
+© 2025 I.K. Il’in, Yu.A. Uss, M.V. Shamolin, L.A. Yan’ko.  
 All rights reserved.
